@@ -187,7 +187,7 @@ gulp.task('txt', done => {
   //
   // Step (2): Import and read URL (*.json)
   gulp
-    .src([strJsnPath + '2016*.json'])
+    .src([strJsnPath + '2020*.json'])
     // parse JSON
     .pipe(
       mapStream(function (file, done) {
