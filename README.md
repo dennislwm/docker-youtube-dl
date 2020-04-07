@@ -23,6 +23,9 @@ Docker starter project for [youtube-dl](https://github.com/ytdl-org/youtube-dl),
        |- Dockerfile                  <-- Docker image build file inspired by kijart/youtube-dl
        |- README.md                   <-- This README markdown file
        |- youtube-dl.conf             <-- configuration file for youtube-dl
+       +- docs/                       <-- Root of Git Page dennislwm.github.io/docker-youtube-dl/
+          |- index.md                 <-- Home page
+          +- homily/                  <-- Transcript *.txt files of Archdiocese homily
 
 ---
 
@@ -140,7 +143,8 @@ For example:
       # Write automatically generated subtitle file (YouTube only)
       --write-auto-sub
 
-      # Write video metadata to a .info.json file      --write-info-json
+      # Write video metadata to a .info.json file
+      --write-info-json
 
 More details about the command line options can be found in the youtube-dl [README](https://github.com/ytdl-org/youtube-dl/blob/master/README.md#configuration).
 
