@@ -1,0 +1,51 @@
+{
+  "name": "docker-youtube-dl",
+  "version": "1.0.0",
+  "description": "Docker starter project for youtube-dl",
+  "main": "index.js",
+  "scripts": {
+    "cp": "docker cp objCouchDb:/opt/couchdb/etc/ ./",
+    "pwd": "echo 'Example: openssl passwd -crypt `${PWD}`",
+    "pwd2": "echo 'Example: echo -n `${PWD}` | openssl dgst -sha256",
+    "build": "docker build -t image .",
+    "debug": "docker run -v 'd:\\docker\\youtube-dl\\raw':/media:rw youtube-dl --dateafter 20200301  --max-downloads 10 'https://www.youtube.com/playlist?list=PLuK5ZVXOaYHRkonVMKe66LF7eVbFcXcgV'",
+    "up": "docker-compose up -d",
+    "up-win": "docker-compose -f docker-compose-win.yml up -d",
+    "clean": "docker-compose down --rmi all",
+    "clean-win": "docker-compose -f docker-compose-win.yml down --rmi all",
+    "down": "docker-compose down",
+    "down-win": "docker-compose -f docker-compose-win.yml down",
+    "bash": "docker run -it image /bin/bash",
+    "stop": "docker-compose stop",
+    "start": "docker-compose start",
+    "restart": "docker-compose restart",
+    "ls": "docker image ls && docker container ls -a",
+    "rm": "docker rm $(docker ps -a --filter 'exited=2' -q)",
+    "vtt": "gulp -f js/gulp.js vtt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dennislwm/docker-youtube-dl.git"
+  },
+  "keywords": [
+    "youtube-dl",
+    "docker",
+    "starter"
+  ],
+  "author": "dennislwm",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/dennislwm/docker-youtube-dl/issues"
+  },
+  "homepage": "https://github.com/dennislwm/docker-youtube-dl#readme",
+  "devDependencies": {
+    "child_process": "^1.0.2",
+    "fs": "0.0.1-security",
+    "gulp": "^4.0.2",
+    "gulp-regex-replace": "^0.2.3",
+    "gulp-rename": "^2.0.0",
+    "gulp-replace": "^1.0.0",
+    "map-stream": "0.0.7",
+    "readline-sync": "^1.4.10"
+  }
+}

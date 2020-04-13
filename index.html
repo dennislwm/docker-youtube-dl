@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+
+  <title>docker-youtube-dl</title>
+  <div class="container">
+    <!-- page body //-->
+    <!-- One card per Step snippet -->
+    <div class="row m-t-2">
+      <div class="col-md-10">
+        <div class="card">
+          <div class="card-block">
+            <h1>docker-youtube-dl</h1>
+            <h3>Configuration:</h3>
+            <div>Before building the Docker image using <b>docker build</b>, you can HARDCODE any configuration of
+              youtube-dl by placing any supported command line option in the configuration file, <i>youtube-dl.conf</i>.
+            </div><br>
+            <h3>Variable:</h3>
+            <div>Before running the Docker image using <b>docker run</b>, follow the steps BELOW, to load variables from
+              a JSON file, <i>youtube-dl.json</i>, to customise variables, to save variables in JSON file, and
+              finally to run the Docker image.</div><br>
+            <h3>Alternative Usage:</h3>
+            <div>$ docker run --rm youtube-dl --param1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap CSS first, then Mytheme CSS -->
+  <!-- Bootswatch theme at https://www.bootstrapcdn.com/bootswatch/ -->
+  <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/lumen/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/mytheme.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- page body //-->
+    <!-- One card per Step snippet -->
+    <div class="row m-t-2">
+      <div class="col-md-10">
+        <div class="card">
+          <div class="card-block">
+            <h2>Step 1: Load Dynamic Variables</h2>
+            <!-- btnLoadTable to Load JSON Table -->
+            <button type="button" id="btnLoadTable">Load JSON File</button>
+            <input id="finLoadTable" type="file" onchange="handleFiles(this.files)" style="display: none;" />
+
+            <!-- divTable to Display JSON Table -->
+            <div id="divTable"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of One card per Step snippet -->
+    <!-- One card per Step snippet -->
+    <div class="row m-t-2">
+      <div class="col-md-10">
+        <div class="card ">
+          <div class="card-block">
+            <h2>Step 2: Enter User Parameter</h2>
+            <table>
+              <tr>
+                <th>Date After (Inclusive):</th>
+                <th>
+                  <input type="text" id="txtUser1" value="Date" oninput="outUser1.value = txtUser1.value"></th>
+              </tr>
+              <tr>
+                <th>Max Download:</th>
+                <th>
+                  <input type="range" id="txtUser2" value="10" min="0" max="10"
+                    oninput="outUser2.value = txtUser2.value">
+                  <output id="outUser2">10</output></th>
+              </tr>
+              <tr>
+                <th>Playlist URL:</th>
+                <th>
+                  <input type="text" id="txtUser3" value="URL" oninput="outUser3.value = txtUser3.value"></th>
+              </tr>
+              <tr>
+                <th>Path:</th>
+                <th>
+                  <input type="text" id="txtUser4" value="path" oninput="outUser4.value = txtUser4.value"></th>
+              </tr>
+            </table><br>
+            <button type="submit" id="btnSubmit">Generate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of One card per Step snippet -->
+    <!-- One card per Step snippet -->
+    <div class="row m-t-2">
+      <div class="col-md-10">
+        <div class="card ">
+          <div class="card-block">
+            <!-- divResult to Display Random Generated Password -->
+            <h2>Step 3: Result</h2>
+            <div id="divResult"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of One card per Step snippet -->
+  </div>
+  <!-- footer //-->
+  <div class="container footer">
+    <div class="row">
+      <div class="col-lg-12">
+        &copy; Copyright 2019 Dennis Lee
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery first, then Bootstrap JS. -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <!-- Click event of btnLoadTable -->
+  <script>
+    //--- Assert global variables
+    var objUserTable = {};  // store User Custom Table Mapping, e.g. {a:"@",t:"+"}
+    $(document).ready(function () {
+      //--- Assert btnLoadTable click event triggers the open file dialog
+      $('#btnLoadTable').click(function () {
+        $('#finLoadTable').trigger('click');
+      })
+    })
+    //--- Assert function to load local JSON file into the global variable objUserTable as an array of { key: "value" } pair
+    //    Assert displays objUserTable in HTML
+    function handleFiles(file) {
+      //  console.log(file[0].name);
+      //--- Assert load local JSON file using ajax GET
+      $.ajax({
+        url: file[0].name,
+        success: function (data) {
+          //  console.log(data);
+          //--- Assert display table in divTable
+          var strHtml = "";
+          var intSize = 0;
+          var strUser = "";
+          $.each(data, function (i, objRow) {
+            //  console.log(i, " ", objRow);
+            intSize++;
+            strUser = "#txtUser" + intSize;
+            //  
+            //  assign json variables to HTML elements
+            $(strUser).val(objRow);
+          })
+          strHtml = "<h4>Loaded " + intSize + " variables";
+          $('#divTable').html(strHtml);
+        },
+        error: function (err) {
+          alert(err.responseText);
+        }
+      })
+    }
+    $(document).ready(function () {
+      //--- Assert function to generate random passwords when User clicks on Button
+      $('#btnSubmit').click(function () {
+        var strDocker = "docker run --name objYouTube --rm ";
+        var strYouTube = "";
+        if ($('#txtUser1').val().length > 0)
+          strYouTube += "--dateafter " + $('#txtUser1').val() + " ";
+        if ($('#txtUser2').val().length > 0)
+          strYouTube += "--max-downloads " + $('#txtUser2').val() + " ";
+        if ($('#txtUser3').val().length > 0)
+          strYouTube += $('#txtUser3').val() + " ";
+        if ($('#txtUser4').val().length > 0)
+          strDocker += "-v " + $('#txtUser4').val() + ":/media:rw ";
+        const strHtml = strDocker + "youtube-dl " + strYouTube;
+        $('#divResult').html(strHtml);
+      })
+    })
+  </script>
+</body>
+
+</html>
