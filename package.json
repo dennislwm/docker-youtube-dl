@@ -21,7 +21,8 @@
     "restart": "docker-compose restart",
     "ls": "docker image ls && docker container ls -a",
     "rm": "docker rm $(docker ps -a --filter 'exited=2' -q)",
-    "vtt": "gulp -f js/gulp.js vtt"
+    "vtt": "gulp -f js/gulp.js vtt",
+    "txt": "gulp -f js/gulp.js txt"
   },
   "repository": {
     "type": "git",

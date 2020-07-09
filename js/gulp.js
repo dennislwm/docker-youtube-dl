@@ -37,6 +37,11 @@ gulp.task('vtt', done => {
   } else {
     strDstPath = jsnFile.dstpath;
   }
+  if (jsnFile.srcfile === undefined) {
+    strSrcFile = "*.vtt"
+  } else {
+    strSrcFile = jsnFile.srcfile;
+  }
   if (jsnFile.overwrite === undefined) {
     blnOverwrite = false;
   } else {
@@ -45,7 +50,7 @@ gulp.task('vtt', done => {
 
   // Step (2):  Import and clean YouTube subtitle files (*.vtt)
   gulp
-    .src([strSrcPath + '202003*.vtt'])
+    .src([strSrcPath + strSrcFile])
     // Clean header
     .pipe(
       gulpRegex({
@@ -153,6 +158,9 @@ gulp.task('txt', done => {
     console.log('Error: config jsnpath is undefined');
     return done();
   } else strJsnPath = jsnFile.jsnpath;
+  if (jsnFile.jsnfile === undefined) {
+    strJsnFile = "*.json"
+  } else strJsnFile = jsnFile.jsnfile;
   if (jsnFile.srcpath === undefined) {
     console.log('Error: config srcpath is undefined');
     return done();

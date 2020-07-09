@@ -21,8 +21,10 @@ Docker starter project for [youtube-dl](https://github.com/ytdl-org/youtube-dl),
        |- batchfile.txt               <-- (optional) batch download URLs file for youtube-dl
        |- docker-compose-win.yml      <-- Docker-compose file to manage containers locally
        |- Dockerfile                  <-- Docker image build file inspired by kijart/youtube-dl
+       |- index.html                  <-- App page
        |- README.md                   <-- This README markdown file
        |- youtube-dl.conf             <-- configuration file for youtube-dl
+       |- youtube-dl.json             <-- JSON file for app page
        +- docs/                       <-- Root of Git Page dennislwm.github.io/docker-youtube-dl/
           |- index.md                 <-- Home page
           +- homily/                  <-- Transcript *.txt files of Archdiocese homily
