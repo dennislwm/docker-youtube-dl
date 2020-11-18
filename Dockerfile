@@ -2,8 +2,8 @@ FROM python:alpine
 
 LABEL maintainer="Dennis Lee <dennislwm@gmail.com>"
 
-RUN pip install --upgrade pip
-RUN pip install youtube_dl
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir youtube_dl
 
 COPY ./youtube-dl.conf /etc/youtube-dl.conf
 
