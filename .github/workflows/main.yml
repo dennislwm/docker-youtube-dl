@@ -42,4 +42,4 @@ jobs:
       #------------------------------------------------
       # Runs your custom action
       - name: docker_youtube_dl_app
-        uses: dennislwm/docker-youtube-dl
+        uses: dennislwm/docker-youtube-dl/.
