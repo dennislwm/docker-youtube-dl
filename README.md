@@ -2,9 +2,34 @@
 
 Docker starter project for [youtube-dl](https://github.com/ytdl-org/youtube-dl), a command-line program to download videos from [YouTube.com](https://youtube.com)
 
+<!-- TOC -->
+
+- [docker-youtube-dl](#docker-youtube-dl)
+  - [TL;DR](#tldr)
+  - [About docker-youtube-dl](#about-docker-youtube-dl)
+  - [Project Structure](#project-structure)
+    - [Environment](#environment)
+  - [Docker Usage](#docker-usage)
+    - [Build a new Docker Image](#build-a-new-docker-image)
+    - [Running a new Docker Container](#running-a-new-docker-container)
+    - [Debugging a Docker Container](#debugging-a-docker-container)
+    - [Stopping and Deleting the Docker Container](#stopping-and-deleting-the-docker-container)
+    - [Stopping and Deleting both the Docker Container and Image](#stopping-and-deleting-both-the-docker-container-and-image)
+    - [List all Docker Containers](#list-all-docker-containers)
+    - [Remove Docker Image](#remove-docker-image)
+    - [Configuration](#configuration)
+    - [Reach Out!](#reach-out)
+    - [License](#license)
+
+<!-- /TOC -->
+
+## TL;DR
+
+![Example Usage](demo.gif)
+
 ---
 
-### About docker-youtube-dl
+## About docker-youtube-dl
 
 **docker-youtube-dl** was a personal project to:
 
@@ -14,7 +39,7 @@ Docker starter project for [youtube-dl](https://github.com/ytdl-org/youtube-dl),
 
 ---
 
-### Project Structure
+## Project Structure
 
      docker-youtube-dl/               <-- Root of your project
        |- .env                        <-- environment variable file for docker-compose.yml
